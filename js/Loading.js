@@ -96,11 +96,9 @@
         function onSkeleton() {
             console.log("播放完成");
             //移除自身界面(1s后)
-            this.removeSelf();
+            // this.removeSelf();
             Laya.stage.addChild(new SC1UI())
         }
-
-
     };
     //继承LoadingPageUI
     Laya.class(Loading, "Loading", LoadingPageUI);

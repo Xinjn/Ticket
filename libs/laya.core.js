@@ -182,8 +182,10 @@ var Laya = window.Laya = (function(window, document) {
                         var getfn = def[i + 1];
                         Object.defineProperty(_class, name, {
                             get: function() { delete this[name]; return this[name] = getfn.call(this); },
-                            set: function(v) { delete this[name];
-                                this[name] = v; },
+                            set: function(v) {
+                                delete this[name];
+                                this[name] = v;
+                            },
                             enumerable: true,
                             configurable: true
                         });
@@ -5245,10 +5247,12 @@ var Laya = window.Laya = (function(window, document) {
                 __class(Storage, '');
                 Storage.init = function() {
                     /*__JS__ */
-                    try { Storage.support = true;
+                    try {
+                        Storage.support = true;
                         Storage.items = window.localStorage;
                         Storage.setItem('laya', '1');
-                        Storage.removeItem('laya'); } catch (e) { Storage.support = false; }
+                        Storage.removeItem('laya');
+                    } catch (e) { Storage.support = false; }
                     if (!Storage.support) console.log('LocalStorage is not supprot or browser is private mode.');
                 }
                 Storage.setItem = function(key, value) {
@@ -8369,7 +8373,9 @@ var Laya = window.Laya = (function(window, document) {
 
         ClassUtils._tM = null;
         ClassUtils._alpha = NaN;
-        __static(ClassUtils, ['DrawTypeDic', function() { return this.DrawTypeDic = { "Rect": ["drawRect", [
+        __static(ClassUtils, ['DrawTypeDic', function() {
+            return this.DrawTypeDic = {
+                "Rect": ["drawRect", [
                     ["x", 0],
                     ["y", 0],
                     ["width", 0],
@@ -8377,14 +8383,16 @@ var Laya = window.Laya = (function(window, document) {
                     ["fillColor", null],
                     ["lineColor", null],
                     ["lineWidth", 1]
-                ]], "Circle": ["drawCircle", [
+                ]],
+                "Circle": ["drawCircle", [
                     ["x", 0],
                     ["y", 0],
                     ["radius", 0],
                     ["fillColor", null],
                     ["lineColor", null],
                     ["lineWidth", 1]
-                ]], "Pie": ["drawPie", [
+                ]],
+                "Pie": ["drawPie", [
                     ["x", 0],
                     ["y", 0],
                     ["radius", 0],
@@ -8393,58 +8401,68 @@ var Laya = window.Laya = (function(window, document) {
                     ["fillColor", null],
                     ["lineColor", null],
                     ["lineWidth", 1]
-                ]], "Image": ["drawTexture", [
+                ]],
+                "Image": ["drawTexture", [
                     ["x", 0],
                     ["y", 0],
                     ["width", 0],
                     ["height", 0]
-                ]], "Texture": ["drawTexture", [
+                ]],
+                "Texture": ["drawTexture", [
                     ["skin", null],
                     ["x", 0],
                     ["y", 0],
                     ["width", 0],
                     ["height", 0]
-                ], 1, "_adptTextureData"], "FillTexture": ["fillTexture", [
+                ], 1, "_adptTextureData"],
+                "FillTexture": ["fillTexture", [
                     ["skin", null],
                     ["x", 0],
                     ["y", 0],
                     ["width", 0],
                     ["height", 0],
                     ["repeat", null]
-                ], 1, "_adptTextureData"], "FillText": ["fillText", [
+                ], 1, "_adptTextureData"],
+                "FillText": ["fillText", [
                     ["text", ""],
                     ["x", 0],
                     ["y", 0],
                     ["font", null],
                     ["color", null],
                     ["textAlign", null]
-                ], 1], "Line": ["drawLine", [
+                ], 1],
+                "Line": ["drawLine", [
                     ["x", 0],
                     ["y", 0],
                     ["toX", 0],
                     ["toY", 0],
                     ["lineColor", null],
                     ["lineWidth", 0]
-                ], 0, "_adptLineData"], "Lines": ["drawLines", [
+                ], 0, "_adptLineData"],
+                "Lines": ["drawLines", [
                     ["x", 0],
                     ["y", 0],
                     ["points", ""],
                     ["lineColor", null],
                     ["lineWidth", 0]
-                ], 0, "_adptLinesData"], "Curves": ["drawCurves", [
+                ], 0, "_adptLinesData"],
+                "Curves": ["drawCurves", [
                     ["x", 0],
                     ["y", 0],
                     ["points", ""],
                     ["lineColor", null],
                     ["lineWidth", 0]
-                ], 0, "_adptLinesData"], "Poly": ["drawPoly", [
+                ], 0, "_adptLinesData"],
+                "Poly": ["drawPoly", [
                     ["x", 0],
                     ["y", 0],
                     ["points", ""],
                     ["fillColor", null],
                     ["lineColor", null],
                     ["lineWidth", 1]
-                ], 0, "_adptLinesData"] }; }]);
+                ], 0, "_adptLinesData"]
+            };
+        }]);
         return ClassUtils;
     })()
 
@@ -20724,8 +20742,10 @@ var Laya = window.Laya = (function(window, document) {
             Input.inputContainer.style.position = "absolute";
             Input.inputContainer.style.zIndex = 1E5;
             Browser.container.appendChild(Input.inputContainer);
-            Input.inputContainer.setPos = function(x, y) { Input.inputContainer.style.left = x + 'px';
-                Input.inputContainer.style.top = y + 'px'; };
+            Input.inputContainer.setPos = function(x, y) {
+                Input.inputContainer.style.left = x + 'px';
+                Input.inputContainer.style.top = y + 'px';
+            };
         }
 
         Input._initInput = function(input) {
